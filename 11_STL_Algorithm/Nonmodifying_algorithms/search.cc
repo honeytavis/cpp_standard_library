@@ -33,7 +33,6 @@ int main()
     int ia[] = {1, 2, 3, 4, 5, 6, 7, 8, 9}; 
     deque<int> coll(ia, ia+7); 
     list<int> subcoll(ia+3, ia+7); 
-    vector<int> vec(ia, ia+9); 
 
     copy(coll.begin(), coll.end(), 
          ostream_iterator<int>(cout, " ")); 
@@ -53,10 +52,21 @@ int main()
         cout << '\n'; 
     }
 
+    vector<int> vec(ia, ia+9); 
     copy(vec.begin(), vec.end(), 
          ostream_iterator<int>(cout, " ")); 
     cout << '\n'; 
 
+    bool checkEvenArgs[] = {true, false, true}; 
+
+    vector<int>::iterator pos = vec.begin();
+    do {
+        pos = search(pos, vec.end(), 
+                     checkEvenArgs, checkEvenArgs+3, f());
+        if (pos != vec.end()) {
+            cout << "subrange start: " << *pos++ << '\n';
+        }
+    } while (pos != vec.end());
 
     return 0; 
 }
