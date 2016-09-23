@@ -26,7 +26,10 @@ int main()
          ostream_iterator<int>(cout, " ")); 
     cout << '\n';
 
-    
+    sort(coll.begin(), coll.end()); 
+    copy(coll.begin(), coll.end(), 
+         ostream_iterator<int>(cout, " ")); 
+    cout << '\n';
 
     return 0; 
 }
