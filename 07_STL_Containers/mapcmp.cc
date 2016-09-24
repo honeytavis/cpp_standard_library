@@ -1,10 +1,12 @@
 #include <cctype>
-#include <iomanip>
-
 #include <iostream>
 using std::cin; 
 using std::cout; 
 using std::endl; 
+using std::ios; 
+
+#include <iomanip>
+using std::setw; 
 
 #include <string>
 using std::string; 
@@ -48,7 +50,35 @@ private:
 
 typedef map<string, string, RunTimeStringCmp> StringStringMap; 
 
+void fillThenPrint(StringStringMap& coll) {
+    coll["Deutschland"] = "Germany"; 
+    coll["deutsch"] = "German"; 
+    coll["Haken"] = "snag"; 
+    coll["arbeiten"] = "work"; 
+    coll["hund"] = "dog"; 
+    coll["gehen"] = "go"; 
+    coll["Unternehmen"] = "enterprise"; 
+    coll["unternehmen"] = "undertake"; 
+    coll["gehen"] = "walk";
+    coll["Bestatter"] = "undertaker"; 
+
+    cout.setf(ios::left, ios::adjustfield); 
+    StringStringMap::iterator pos; 
+    for (pos = coll.begin(); pos != coll.end(); ++pos) {
+        cout << setw(15) << pos->first << " "
+             << pos->second << '\n'; 
+    }
+    cout << endl; 
+}
+
 int main()
 {
+    StringStringMap coll1; 
+    fillThenPrint(coll1); 
+
+    RunTimeStringCmp ignorecase(RunTimeStringCmp::nocase); 
+    StringStringMap coll2(ignorecase); 
+    fillThenPrint(coll2); 
+    
     return 0; 
 }
